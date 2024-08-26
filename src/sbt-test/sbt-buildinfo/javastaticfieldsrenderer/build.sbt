@@ -96,7 +96,7 @@ lazy val root = (project in file("."))
           """""" ::
           """  private static java.net.URL internalAsUrl(String urlString) {""" ::
           """    try {""" ::
-          """      return new java.net.URL(urlString);""" ::
+          """      return new java.net.URI(urlString).toURL();""" ::
           """    } catch (Exception e) {""" ::
           """      return null;""" ::
           """    }""" ::
