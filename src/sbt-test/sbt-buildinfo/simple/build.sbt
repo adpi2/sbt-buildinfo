@@ -50,10 +50,10 @@ lazy val root = (project in file("."))
              scalaVersionInfo ::
              """  /** The value is scala.xml.NodeSeq.Empty. */""" ::
              """  val ivyXML: scala.xml.NodeSeq = scala.xml.NodeSeq.Empty""" ::
-             """  /** The value is scala.Some(new java.net.URL("http://example.com")). */""" ::
-             """  val homepage: scala.Option[java.net.URL] = scala.Some(new java.net.URL("http://example.com"))""" ::
-             """  /** The value is scala.collection.immutable.Seq(("MIT License" -> new java.net.URL("https://github.com/sbt/sbt-buildinfo/blob/master/LICENSE"))). */""" ::
-             """  val licenses: scala.collection.immutable.Seq[(String, java.net.URL)] = scala.collection.immutable.Seq(("MIT License" -> new java.net.URL("https://github.com/sbt/sbt-buildinfo/blob/master/LICENSE")))""" ::
+             """  /** The value is scala.Some(new java.net.URI("http://example.com").toURL). */""" ::
+             """  val homepage: scala.Option[java.net.URL] = scala.Some(new java.net.URI("http://example.com").toURL)""" ::
+             """  /** The value is scala.collection.immutable.Seq(("MIT License" -> new java.net.URI("https://github.com/sbt/sbt-buildinfo/blob/master/LICENSE").toURL)). */""" ::
+             """  val licenses: scala.collection.immutable.Seq[(String, java.net.URL)] = scala.collection.immutable.Seq(("MIT License" -> new java.net.URI("https://github.com/sbt/sbt-buildinfo/blob/master/LICENSE").toURL))""" ::
              """  /** The value is Map(). */""" ::
              """  val apiMappings: Map[java.io.File, java.net.URL] = Map()""" ::
              """  /** The value is false. */""" ::

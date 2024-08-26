@@ -39,8 +39,8 @@ lazy val app = (project in file("app"))
              """  val projectID: String = "com.example:root:0.1"""" ::
              """  /** The value is "0.1". */""" ::
              """  val version: String = "0.1"""" ::
-             """  /** The value is new java.net.URL("http://example.com"). */""" ::
-             """  val homepage = new java.net.URL("http://example.com")""" ::
+             """  /** The value is new java.net.URI("http://example.com").toURL. */""" ::
+             """  val homepage = new java.net.URI("http://example.com").toURL""" ::
              scalaVersionInfoComment ::
              scalaVersionInfo ::
              """  override val toString: String = {""" ::
