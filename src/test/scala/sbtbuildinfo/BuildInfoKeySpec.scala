@@ -14,7 +14,7 @@ object BuildInfoKeySpec {
     "year" -> 2012,
     BuildInfoKey.action("buildTime") { 1234L },
     BuildInfoKey.map(version) { case (_, v) => "projectVersion" -> v.toDouble },
-    BuildInfoKey.map(fullClasspath) { case (ident, cp) => ident -> cp.files },
+    BuildInfoKey.map(fullClasspath) { case (ident, cp) => ident -> cp.map(_.data) },
   )
 
   buildInfoKeys  += name                                       // test `+=` works with a setting key
@@ -34,6 +34,6 @@ object BuildInfoKeySpec {
     "year" -> 2012,
     BuildInfoKey.action("buildTime") { 1234L },
     BuildInfoKey.map(version) { case (_, v) => "projectVersion" -> v.toDouble },
-    BuildInfoKey.map(fullClasspath) { case (ident, cp) => ident -> cp.files },
+    BuildInfoKey.map(fullClasspath) { case (ident, cp) => ident -> cp.map(_.data) },
   )
 }

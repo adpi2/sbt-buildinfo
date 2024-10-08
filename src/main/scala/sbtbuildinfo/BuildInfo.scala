@@ -31,12 +31,12 @@ object BuildInfo {
     def entry[A](info: BuildInfoKey.Entry[A]): Option[Task[BuildInfoResult]] = {
       val typeExpr = TypeExpression.parse(info.manifest.toString())._1
       val result = info match {
-        case BuildInfoKey.Setting(key)      => extracted getOpt (key in scope(key, project)) map (v => task(ident(key) -> v))
-        case BuildInfoKey.Task(key)         => Some(task(ident(key) -> extracted.runTask(key in scope(key, project), state)._2))
+        case BuildInfoKey.Setting(key)      => extracted getOpt (scope(key, project) / key) map (v => task(ident(key) -> v))
+        case BuildInfoKey.Task(key)         => Some(task(ident(key) -> extracted.runTask(scope(key, project) / key, state)._2))
         case BuildInfoKey.TaskValue(task)   => Some(task.map(x => ident(task) -> x))
         case BuildInfoKey.Constant(tuple)   => Some(task(tuple))
         case BuildInfoKey.Action(name, fun) => Some(task(name -> fun.apply))
-        case BuildInfoKey.Mapped(from, fun) => entry(from) map (_ map (r => fun((r.identifier, r.value.asInstanceOf[A]))))
+        case info: BuildInfoKey.Mapped[x, A] => entry(info.from).map(_.map(r => info.fun((r.identifier, r.value.asInstanceOf[x]))))
       }
       result map (_ map { case (identifier, value) => BuildInfoResult(identifier, value, typeExpr) })
     }
@@ -46,7 +46,7 @@ object BuildInfo {
 
   private def scope(scoped: Scoped, project: ProjectReference) = {
     val scope0 = scoped.scope
-    if (scope0.project == This) scope0 in project
+    if (scope0.project == This) scope0.copy(project = Select(project))
     else scope0
   }
 
