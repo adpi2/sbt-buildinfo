@@ -1,6 +1,7 @@
 package sbtbuildinfo
 
-import sbt._, Keys._
+import sbt.{given, _}
+import Keys._
 
 case class BuildInfoResult(identifier: String, value: Any, typeExpr: TypeExpression)
 

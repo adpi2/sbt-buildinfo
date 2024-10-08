@@ -58,9 +58,3 @@ object BuildInfoKey {
 // TODO add flatMapN alias in sbt 1.x or flatMap alias in sbt 2.x
 extension [A1 <: Tuple] (tuple: RichTaskables[A1])
   private def flatMap[A2](f: tuple.Fun[[X] =>> X,  Task[A2]]): Def.Initialize[Task[A2]] = tuple.flatMapN(f)
-
-// implicit Conversion requires a given import in sbt 2.x
-// TODO revert back to implicit def conversion?
-export sbt.given_Conversion_Scope_RichScope
-
-

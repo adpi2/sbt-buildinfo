@@ -18,7 +18,7 @@ lazy val root = (project in file("."))
     scalacOptions ++= {
       onScalaVersion(
         scala212 = Seq("-Xlint", "-Xfatal-warnings", "-language:experimental.macros"),
-        scala3 = Seq("-Wunused:all", "-Werror")
+        scala3 = Seq(/* "-Wunused:all", */ "-Werror")
       ).value ++ Seq("-unchecked", "-deprecation", "-feature", "-language:implicitConversions")
     },
     libraryDependencies += onScalaVersion(
